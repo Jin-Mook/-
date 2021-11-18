@@ -1,10 +1,11 @@
 from flask import Flask
 from models import db
-from views import main_view
+from views import main_view, book_info_view
 
 
 app = Flask(__name__)
 app.register_blueprint(main_view.bp)
+app.register_blueprint(book_info_view.bp)
 app.secret_key = 'secretttt'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost:3306/elice_library'

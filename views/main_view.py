@@ -13,30 +13,44 @@ def main():
     # pymysql을 이용한 방법
     # 일단 아직 오류는 안보인다
     book_info = []
-    con = pymysql.connect(host='localhost', user='root', passwd='root', db="elice_library", charset="utf8")
-    cur = con.cursor()
+    # con = pymysql.connect(host='localhost', user='root', passwd='root', db="elice_library", charset="utf8")
+    # cur = con.cursor()
 
-    sql = "select * from Book_list"
-    cur.execute(sql)
-    datas = cur.fetchall()
-    con.close()
-    for data in datas:
-        book_title = data[1]
-        book_img = data[9]
+    # sql = "select * from Book_list"
+    # cur.execute(sql)
+    # con.close()
+    # datas = cur.fetchall()
+    # # 책의 db에 저장된 id값
+    # for data in datas:
+    #     book_id = data[0]
+    #     book_title = data[1]
+    #     book_img = data[9]
+    #     # 책 제목에 해당하는 Review테이블의 rating 속성의 값들을 가져와서 평균을 내주어야한다.
+    #     # 책 제목에 해당하는 Book_remain 테이블의 book_remain 속성의 값을 가져와야 한다.
+    #     # book_ratings = Review.query.filter(Review.book_name==book_title).all()
+    #     # 지금은 평점을 3으로 통일하겠다.
+    #     book_ratings = 3
+    #     # 남아있는 책도 10권으로일단 통일
+    #     book_remain = Book_remain.query.filter(Book_remain.book_name==book_title).first()
+    #     book_img = '.' + book_img
+    #     book_info.append([book_img, book_title, book_ratings, book_remain.book_remain, book_id])
+
+    book_infos = Book_list.query.all()
+
+    for data in book_infos:
+        book_id = data.id
+        book_title = data.book_name
+        book_img = data.book_img
         # 책 제목에 해당하는 Review테이블의 rating 속성의 값들을 가져와서 평균을 내주어야한다.
         # 책 제목에 해당하는 Book_remain 테이블의 book_remain 속성의 값을 가져와야 한다.
         # book_ratings = Review.query.filter(Review.book_name==book_title).all()
         # 지금은 평점을 3으로 통일하겠다.
         book_ratings = 3
         # 남아있는 책도 10권으로일단 통일
-        book_remain = 10
+        book_remain = Book_remain.query.filter(Book_remain.book_name==book_title).first()
         book_img = '.' + book_img
-        book_info.append([book_img, book_title, book_ratings, book_remain])
-
-    # models의 클래스를 이용한 방법인데 속성값들이 출력되지 않는 오류가 발생하는데 이유를 모르겠다...
-    # def __init__(self, book_name, publisher, author, publication_date, pages, isbn, description, link, book_img):
-    # book_info = db.session.query(Book_list).all()
-    print(book_info)
+        book_info.append([book_img, book_title, book_ratings, book_remain.book_remain, book_id])
+    
 
     # 로그인 된 상태라면 로그인된 유저의 정보 불러오기
     user_id = session['login']
