@@ -6,10 +6,22 @@
   <title>로그인 페이지</title>
 </head>
 <body>
+  <div>
+    {% with message = get_flashed_messages() %}
+      {% if message %}
+      {{ message[0] }}
+      {% endif %}
+    {% endwith %}
+  </div>
+  
   <form action="{{ url_for('main.login') }}" method="post">
     <input type="text" name="user_id" placeholder="이메일을 입력하세요" />
     <input type="password" name="user_pw" placeholder="비밀번호를 입력하세요" />
     <input type="submit" value="로그인" />
   </form>
+  <div>
+    <a href="{{ url_for('main.regist') }}">회원가입</a>
+    <a href="{{ url_for('main.main') }}">홈으로</a>
+  </div>
 </body>
 </html>

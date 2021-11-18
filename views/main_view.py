@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, flash, url_for
+from flask import Blueprint, render_template, request, redirect, flash, url_for, session
 from models import db, User, Book_list, Book_borrow_return, Book_remain, Review
 from flask_bcrypt import Bcrypt
 import pymysql
@@ -25,9 +25,14 @@ def main():
 
     # models의 클래스를 이용한 방법인데 속성값들이 출력되지 않는 오류가 발생하는데 이유를 모르겠다...
     # def __init__(self, book_name, publisher, author, publication_date, pages, isbn, description, link, book_img):
-    # data = db.session.query(Book_list).all()
-    # print(data)
-    return render_template('main.html', data=bookName)
+    # bookName = db.session.query(Book_list).all()
+    # print(bookName)
+
+    # 로그인 된 상태라면 로그인된 유저의 정보 불러오기
+    user_id = session['login']
+    user = User.query.filter(User.user_id==user_id).first()
+
+    return render_template('main.html', data=bookName, user=user)
 
 
 # 회원가입 페이지
@@ -72,5 +77,26 @@ def login():
     else:
         user_id = request.form["user_id"]
         user_pw = request.form["user_pw"]
-        print(user_id, user_pw)
-        return redirect('/')
+
+        # 입력받은 아이디가 User table에 없는 경우
+        user = User.query.filter(User.user_id==user_id).first()
+        if user == None:
+            flash('없는 아이디 입니다.')
+            return render_template('login.html')
+        # 입력받은 아이디가 있는 경우
+        else:
+            # 비밀번호가 일치하는 경우
+            if bcrypt.check_password_hash(user.user_pw, user_pw):
+                session['login'] = user_id
+                return redirect('/')
+            # 비밀번호가 일치하지 않는 경우
+            else:
+                flash('비밀번호가 일치하지 않습니다.')
+                return render_template('login.html')
+
+
+# 로그아웃 페이지
+@bp.route('/logout')
+def logout():
+    session['login'] = None
+    return redirect('/')

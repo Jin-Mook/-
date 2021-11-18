@@ -9,7 +9,7 @@ class User(db.Model):
   id                    = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
   user_id               = db.Column(db.String(30), nullable=False)
   user_pw               = db.Column(db.Text, nullable=False)
-  nickname              = db.Column(db.String(30), nullable=False)
+  nickname              = db.Column(db.String(30), nullable=False, unique=True)
 
   user1 = db.relationship("Book_borrow_return", backref='User')
   user2 = db.relationship("Review", backref='User')
@@ -93,7 +93,7 @@ class Review(db.Model):
   author                = db.Column(db.String(50), nullable=False)
   isbn                  = db.Column(db.Integer)
   review_context        = db.Column(db.Text)
-  nickname              = db.Column(db.String(30), nullable=False)
+  nickname              = db.Column(db.String(30), nullable=False, unique=True)
 
   def __init__(self, user_id, book_name, author, isbn, review_context, nickname):
     self.user_id = user_id
