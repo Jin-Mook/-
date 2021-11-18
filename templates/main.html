@@ -3,7 +3,12 @@
 {% extends 'navbar.html' %}
 
 {% block content %}
-{% for d in data %}
-  <div>{{ d }}</div>
+{% for book in book_info %}
+  <div class="book-container">
+    <div class="book-img"><img src="{{ book[0] }}" alt="{{ book[1] }}" style="width: 200px;"></div>
+    <div class="book-title"><a href="#">{{ book[1] }}</a></div>
+    <div class="book-rating">{{ book[2] }}권 남음</div>
+    <div class="book-remain">{{ book[3] }}</div>
+  </div>
 {% endfor %}
 {% endblock %}

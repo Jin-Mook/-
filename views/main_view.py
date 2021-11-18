@@ -12,27 +12,37 @@ bcrypt = Bcrypt()
 def main():
     # pymysql을 이용한 방법
     # 일단 아직 오류는 안보인다
-    bookName = []
+    book_info = []
     con = pymysql.connect(host='localhost', user='root', passwd='root', db="elice_library", charset="utf8")
     cur = con.cursor()
 
     sql = "select * from Book_list"
     cur.execute(sql)
-    data = cur.fetchall()
-    for d in data:
-        bookName.append(d[1])
+    datas = cur.fetchall()
     con.close()
+    for data in datas:
+        book_title = data[1]
+        book_img = data[9]
+        # 책 제목에 해당하는 Review테이블의 rating 속성의 값들을 가져와서 평균을 내주어야한다.
+        # 책 제목에 해당하는 Book_remain 테이블의 book_remain 속성의 값을 가져와야 한다.
+        # book_ratings = Review.query.filter(Review.book_name==book_title).all()
+        # 지금은 평점을 3으로 통일하겠다.
+        book_ratings = 3
+        # 남아있는 책도 10권으로일단 통일
+        book_remain = 10
+        book_img = '.' + book_img
+        book_info.append([book_img, book_title, book_ratings, book_remain])
 
     # models의 클래스를 이용한 방법인데 속성값들이 출력되지 않는 오류가 발생하는데 이유를 모르겠다...
     # def __init__(self, book_name, publisher, author, publication_date, pages, isbn, description, link, book_img):
-    # bookName = db.session.query(Book_list).all()
-    # print(bookName)
+    # book_info = db.session.query(Book_list).all()
+    print(book_info)
 
     # 로그인 된 상태라면 로그인된 유저의 정보 불러오기
     user_id = session['login']
     user = User.query.filter(User.user_id==user_id).first()
 
-    return render_template('main.html', data=bookName, user=user)
+    return render_template('main.html', book_info=book_info, user=user)
 
 
 # 회원가입 페이지
