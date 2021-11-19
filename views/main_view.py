@@ -53,7 +53,7 @@ def main():
     
 
     # 로그인 된 상태라면 로그인된 유저의 정보 불러오기
-    user_id = session['login']
+    user_id = session.get('login')
     user = User.query.filter(User.user_id==user_id).first()
 
     return render_template('main.html', book_info=book_info, user=user)

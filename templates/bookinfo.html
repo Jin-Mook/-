@@ -1,0 +1,63 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+<table style="width: 70%;">
+  <tr>
+    <td>
+      <div>
+        <img src="{{ '.' + book_infos.book_img}}" alt="book_infos.book_name" style="width: 200px;">
+      </div>
+    </td>
+    <td>
+      <table>
+        <tr>
+          <td>책 제목</td>
+          <td>{{ book_infos.book_name }}</td>
+        </tr>
+        <tr>
+          <td>출판사</td>
+          <td>{{ book_infos.publisher}}</td>
+        </tr>
+        <tr>
+          <td>저자</td>
+          <td>{{ book_infos.author }}</td>
+        </tr>
+        <tr>
+          <td>출간일</td>
+          <td>{{ book_infos.publication_date}}</td>
+        </tr>
+        <tr>
+          <td>페이지 수</td>
+          <td>{{ book_infos.pages }}</td>
+        </tr>
+        <tr>
+          <td>ISBN 코드</td>
+          <td>{{ book_infos.isbn }}</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<div style="width: 70%;">
+  {{ book_infos.description }}
+</div>
+<div>
+  {% for review in reviews %}
+  <div><{{ review.nickname }}></div>
+  <div>{{ review.review_context }}</div>
+  <div>{{ review.rating }}</div>
+  {% endfor %}
+</div>
+
+{% if session.get('login') != None %}
+  <div>
+    <form action="{{ url_for('book.review', id=id) }}", method="post">
+      <textarea name="review_context" id="textarea" cols="30" rows="10"></textarea>
+      <!-- 평점 표현하는 코드 작성하기 -->
+      <input type="text" name="rating" />
+      <input type="submit" value="작성하기">
+    </form>
+  </div>
+{% endif %}
+{% endblock %}

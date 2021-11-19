@@ -92,13 +92,15 @@ class Review(db.Model):
   book_name             = db.Column(db.String(30), db.ForeignKey(Book_list.book_name), nullable=False)
   author                = db.Column(db.String(50), nullable=False)
   isbn                  = db.Column(db.Integer)
+  rating                = db.Column(db.Integer, default=0)
   review_context        = db.Column(db.Text)
-  nickname              = db.Column(db.String(30), nullable=False, unique=True)
+  nickname              = db.Column(db.String(30), nullable=False)
 
-  def __init__(self, user_id, book_name, author, isbn, review_context, nickname):
+  def __init__(self, user_id, book_name, author, isbn, rating, review_context, nickname):
     self.user_id = user_id
     self.book_name = book_name
     self.author = author
     self.isbn = isbn
+    self.rating = rating
     self.review_context = review_context
     self.nickname = nickname
