@@ -28,7 +28,7 @@ class Book_list(db.Model):
   book_name             = db.Column(db.String(30), primary_key=True ,nullable=False)
   publisher             = db.Column(db.String(30), nullable=False)
   author                = db.Column(db.String(50), nullable=False)
-  publication_date      = db.Column(db.DateTime, nullable=False)
+  publication_date      = db.Column(db.Date, nullable=False)
   pages                 = db.Column(db.Integer, nullable=False)
   isbn                  = db.Column(db.Integer, nullable=False)
   description           = db.Column(db.Text, nullable=False)
@@ -59,15 +59,17 @@ class Book_borrow_return(db.Model):
   user_id               = db.Column(db.String(30), db.ForeignKey(User.user_id), nullable=False)
   book_name             = db.Column(db.String(30), db.ForeignKey(Book_list.book_name), nullable=False)
   author                = db.Column(db.String(50), nullable=False)
-  borrow_date           = db.Column(db.DateTime, nullable=False)
-  return_date           = db.Column(db.DateTime, nullable=False)
+  borrow_date           = db.Column(db.Date, nullable=False)
+  return_date           = db.Column(db.Date, nullable=False)
+  book_count            = db.Column(db.Integer, nullable=False)
 
-  def __init__(self, user_id, book_name, author, borrow_date, return_date):
+  def __init__(self, user_id, book_name, author, borrow_date, return_date, book_count):
     self.user_id = user_id
     self.book_name = book_name
     self.author = author
     self.borrow_date = borrow_date
     self.return_date = return_date
+    self.book_count = book_count
 
 
 # Book_remain 대여 후 남은 책과 관련된 테이블
