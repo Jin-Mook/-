@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>책 대여</title>
+</head>
+<body>
+  <form action="{{ url_for('checkout_return.checkout', id=id_value) }}" method="post">
+    <label for="checkoutNum">{{ book_name }}</label>
+    <span id="minus-btn">-</span>
+    <input id="checkoutNum" type="number" min="1" name="checkoutNum" value="1">
+    <span id="plus-btn">+</span>
+    <input type="submit" value="대여하기">
+  </form>
+
+
+</body>
+</html>

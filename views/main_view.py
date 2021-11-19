@@ -10,30 +10,8 @@ bcrypt = Bcrypt()
 # 메인 페이지 => 책의 목록과 로그인 페이지 회원가입 페이지로 갈 수 있는 링크가 있다.
 @bp.route('/')
 def main():
-    # pymysql을 이용한 방법
-    # 일단 아직 오류는 안보인다
+    # 데이터로 넘겨줄 정보를 담을 리스트
     book_info = []
-    # con = pymysql.connect(host='localhost', user='root', passwd='root', db="elice_library", charset="utf8")
-    # cur = con.cursor()
-
-    # sql = "select * from Book_list"
-    # cur.execute(sql)
-    # con.close()
-    # datas = cur.fetchall()
-    # # 책의 db에 저장된 id값
-    # for data in datas:
-    #     book_id = data[0]
-    #     book_title = data[1]
-    #     book_img = data[9]
-    #     # 책 제목에 해당하는 Review테이블의 rating 속성의 값들을 가져와서 평균을 내주어야한다.
-    #     # 책 제목에 해당하는 Book_remain 테이블의 book_remain 속성의 값을 가져와야 한다.
-    #     # book_ratings = Review.query.filter(Review.book_name==book_title).all()
-    #     # 지금은 평점을 3으로 통일하겠다.
-    #     book_ratings = 3
-    #     # 남아있는 책도 10권으로일단 통일
-    #     book_remain = Book_remain.query.filter(Book_remain.book_name==book_title).first()
-    #     book_img = '.' + book_img
-    #     book_info.append([book_img, book_title, book_ratings, book_remain.book_remain, book_id])
 
     book_infos = Book_list.query.all()
 
@@ -45,7 +23,18 @@ def main():
         # 책 제목에 해당하는 Book_remain 테이블의 book_remain 속성의 값을 가져와야 한다.
         # book_ratings = Review.query.filter(Review.book_name==book_title).all()
         # 지금은 평점을 3으로 통일하겠다.
-        book_ratings = 3
+        reviews = Review.query.filter(Review.book_name==book_title).all()
+        total_rating = 0
+        for book in reviews:
+            total_rating += book.rating
+        
+        # 리뷰의 개수가 0인 경우
+        if len(reviews) == 0:
+            book_ratings = total_rating
+        # 리뷰의 개수가 0이 아닌 경우
+        else:
+            book_ratings = total_rating / len(reviews)
+
         # 남아있는 책도 10권으로일단 통일
         book_remain = Book_remain.query.filter(Book_remain.book_name==book_title).first()
         book_img = '.' + book_img

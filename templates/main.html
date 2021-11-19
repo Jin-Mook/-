@@ -1,6 +1,5 @@
-
-
 {% extends 'navbar.html' %}
+
 
 {% block content %}
 {% for book in book_info %}
@@ -9,7 +8,7 @@
     <div class="book-title"><a href="{{ url_for('book.info', id=book[4]) }}">{{ book[1] }}</a></div>
     <div class="book-rating">{{ book[2] }}</div>
     <div class="book-remain">{{ book[3] }}권 남음</div>
-    <div>대여하기</div>
+    <a href="{{ url_for('checkout_return.checkout', id=book[4]) }}" target="_blank">대여하기</a>
   </div>
 {% endfor %}
 {% endblock %}
