@@ -23,7 +23,7 @@
       {% else %}
       <div class="login">
         <a href="{{ url_for('checkout_return.checkoutRecord', nickname=session.get('nickname')) }}">대여 및 반납기록</a>
-        <a href="#">반납하기</a>
+        <a href="{{ url_for('checkout_return.bookReturn', nickname=session.get('nickname')) }}">반납하기</a>
         <a href="{{ url_for('main.logout') }}">로그아웃</a>
       </div>
       {% endif %}
@@ -34,6 +34,9 @@
     {% block content %}
     {% endblock %}
   </div>
+
+  {% block scripts %}
+  {% endblock %}
 
 </body>
 </html>
