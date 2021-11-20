@@ -62,14 +62,16 @@ class Book_borrow_return(db.Model):
   borrow_date           = db.Column(db.Date, nullable=False)
   return_date           = db.Column(db.Date, nullable=False)
   book_count            = db.Column(db.Integer, nullable=False)
+  returned_date         = db.Column(db.String(10), default='no')
 
-  def __init__(self, user_id, book_name, author, borrow_date, return_date, book_count):
+  def __init__(self, user_id, book_name, author, borrow_date, return_date, book_count, returned_date):
     self.user_id = user_id
     self.book_name = book_name
     self.author = author
     self.borrow_date = borrow_date
     self.return_date = return_date
     self.book_count = book_count
+    self.returned_date = returned_date
 
 
 # Book_remain 대여 후 남은 책과 관련된 테이블

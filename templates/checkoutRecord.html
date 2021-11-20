@@ -1,0 +1,15 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+  <h2><{{nickname}}님의 대여 및 반납 목록></h2>
+{% for checkout_book in checkout_list %}
+  <div class="book-container">
+    <div class="book-img"><img src="{{ book[0] }}" alt="{{ book[1] }}" style="width: 200px;"></div>
+    <div class="book-title"><a href="{{ url_for('book.info', id=book[4]) }}">{{ book[1] }}</a></div>
+    <div class="book-count">{{ book[2] }}</div>
+    <div class="book-rating">{{ book[3] }}</div>
+    <div class="book-borrow">대여일 : {{ book[4] }}</div>
+    <div class="book-return">반납일 : {{ book[5] }}</div>
+  </div>
+{% endfor %}
+{% endblock %}

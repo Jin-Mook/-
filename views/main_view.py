@@ -101,6 +101,7 @@ def login():
             # 비밀번호가 일치하는 경우
             if bcrypt.check_password_hash(user.user_pw, user_pw):
                 session['login'] = user_id
+                session['nickname'] = user.nickname
                 return redirect('/')
             # 비밀번호가 일치하지 않는 경우
             else:
@@ -112,4 +113,5 @@ def login():
 @bp.route('/logout')
 def logout():
     session['login'] = None
+    session['nickname'] = None
     return redirect('/')
