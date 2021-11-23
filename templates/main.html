@@ -1,15 +1,43 @@
 {% extends 'navbar.html' %}
 
+{% block script %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% endblock %}
+
 {% block content %}
-{% for book in book_info %}
-  <div class="book-container">
-    <div class="book-img"><img src="{{ book[0] }}" alt="{{ book[1] }}" style="width: 200px;"></div>
-    <div class="book-title"><a href="{{ url_for('book.info', id=book[4]) }}">{{ book[1] }}</a></div>
-    <div class="book-rating">{{ book[2] }}</div>
-    <div class="book-remain">{{ book[3] }}권 남음</div>
-    {% if session.get('login') != None %}
-    <a href="{{ url_for('checkout_return.checkout', id=book[4]) }}">대여하기</a>
-    {% endif %}
-  </div>
-{% endfor %}
+<table>
+<tbody>
+  {% for i in range(book_info|length) %}
+  
+  {% if i % 4 == 0 %}
+  <tr class="tr{{ i // 4 }} table-line notshow">
+  {% endif %}
+    <td>
+      <div class="book-container">
+        <div class="book-img"><img src="{{ book_info[i][0] }}" alt="{{ book_info[i][1] }}" style="width: 200px;"></div>
+        <div class="book-title"><a href="{{ url_for('book.info', id=book_info[i][4]) }}">{{ book_info[i][1] }}</a></div>
+        <div class="book-rating">{{ book_info[i][2] }}</div>
+        <div class="book-remain">{{ book_info[i][3] }}권 남음</div>
+        {% if session.get('login') != None %}
+        <a href="{{ url_for('checkout_return.checkout', id=book_info[i][4]) }}">대여하기</a>
+        {% endif %}
+      </div>
+    </td>
+  {% if i % 4 == 3 %}
+  </tr>
+  {% endif %}
+  
+  {% endfor %}
+</tbody>
+</table>
+
+<div id="pagination">
+</div>
+{% endblock %}
+
+{% block  scripts %}
+  <script>
+    const book_info = {{ book_info | tojson }}
+  </script>
+  <script src="{{ url_for('static', filename='javascript/main.js') }}"></script>
 {% endblock %}
