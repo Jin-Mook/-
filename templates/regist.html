@@ -15,9 +15,9 @@
   </div>
   <form action="{{ url_for('main.regist') }}" method="post">
     <input type="text" name="nickname" placeholder="이름" />
-    <input type="text" name="user_id" placeholder="이메일" />
-    <input type="text" name="user_pw1" placeholder="비밀번호" />
-    <input type="text" name="user_pw2" placeholder="비밀번호 확인" />
+    <input type="text" name="user_id" placeholder="이메일 형식으로 작성해주세요" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" />
+    <input type="password" name="user_pw1" placeholder="비밀번호" />
+    <input type="password" name="user_pw2" placeholder="비밀번호 확인" />
     <input type="submit" value="회원가입" />
   </form>
   <div>

@@ -1,8 +1,28 @@
 from flask import Blueprint, render_template, request, redirect, flash, url_for, session
 from models import db, User, Book_list, Book_borrow_return, Book_remain, Review
 from flask_bcrypt import Bcrypt
+import re
 import pymysql
 pymysql.install_as_MySQLdb()
+
+# 비밀번호 유효성을 검사하는 함수
+def pwdValidation(pwd):
+    special_char = ['!', '@', '#', '$', '%', '^', '&', '+', '=']
+
+    if len(pwd) < 8:
+        flash('비밀번호는 최소 8자 이상이어야 합니다.')
+        return False
+    elif re.search('[0-9]+', pwd) is None:
+        flash('비밀번호는 최소 1개 이상의 숫자가 포함되어야 합니다.')
+        return False
+    elif re.search('[a-z]+', pwd) is None and re.search('[A-Z]+', pwd) is None:
+        flash('비밀번호는 최소 1개 이상의 영문자가 포함되어야 합니다.')
+        return False
+    elif not any(c in special_char for c in pwd):
+        flash("비밀번호는 최소 1개 이상의 '!', '@', '#', '$', '%', '^', '&', '+', '=' 특수문자가 포함되어야 합니다.")
+        return False
+    return True
+
 
 bp = Blueprint('main', __name__, url_prefix='/')
 bcrypt = Bcrypt()
@@ -59,19 +79,27 @@ def regist():
         user_pw2 = request.form['user_pw2']
         nickname = request.form['nickname']
 
-        # 아이디 이메일 형식으로 받는 기능은 후에 추가하자
-        # 비밀번호 최소 10자리 영문, 숫자, 특수문자 중 2 종류 이상 조합
-        # 혹은 최소 8자리 이상 영문, 숫자, 특수문자 조합이 가능하게 만들기도 후에 추가
-
         # 비밀번호가 같지 않은 경우
         if user_pw1 != user_pw2:
             flash('비밀번호를 확인하세요')
             return render_template('regist.html')
-        
+
+        # 비밀번호 최소 10자리 영문, 숫자, 특수문자 중 2 종류 이상 조합
+        # 혹은 최소 8자리 이상 영문, 숫자, 특수문자 조합이 가능하게 만들기도 후에 추가
+        # 비밀번호 형식에 대한 확인
+        if pwdValidation(user_pw1) == False:
+            return render_template('regist.html')
+
         # user_id 가 동일한 경우
         user = User.query.filter(User.user_id==user_id).first()
         if user != None:
             flash('이미 존재하는 아이디 입니다.')
+            return render_template('regist.html')
+        
+        user2 = User.query.filter(User.nickname==nickname).first()
+        # nickname이 이미 존재하는 경우
+        if user2 != None:
+            flash('이미 존재하는 이름 입니다.')
             return render_template('regist.html')
 
         # 비밀번호 암호화 하기
