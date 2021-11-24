@@ -1,5 +1,9 @@
 {% extends 'navbar.html' %}
 
+{% block script %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bookinfo.css') }}">
+{% endblock %}
+
 {% block content %}
 <table style="width: 70%;">
   <tr>
@@ -47,7 +51,11 @@
   {% for review in reviews %}
   <div><{{ review.nickname }}></div>
   <div>{{ review.review_context }}</div>
-  <div>{{ review.rating }}</div>
+  <div class="review-rating">{{ review.rating }}
+    {% for i in range(review.rating) %}
+    <img src="{{ url_for('static', filename='images/star4.png') }}" alt="star img">
+    {% endfor %}
+  </div>
   {% endfor %}
 </div>
 
@@ -56,10 +64,26 @@
     <form action="{{ url_for('book.review', id=id) }}", method="post">
       <div>평점과 리뷰를 남겨주세요.</div>
       <!-- 평점 표현하는 코드 작성하기 -->
-      <input type="text" name="rating" /><br />
+      <div class="rating">
+        <input type="checkbox" name="rating" id="rating1" value="1" class="rate_radio" title="1점" checked="true">
+        <label for="rating1"></label>
+        <input type="checkbox" name="rating" id="rating2" value="2" class="rate_radio" title="2점" checked="true">
+        <label for="rating2"></label>
+        <input type="checkbox" name="rating" id="rating3" value="3" class="rate_radio" title="3점" checked="true">
+        <label for="rating3"></label>
+        <input type="checkbox" name="rating" id="rating4" value="4" class="rate_radio" title="4점">
+        <label for="rating4"></label>
+        <input type="checkbox" name="rating" id="rating5" value="5" class="rate_radio" title="5점">
+        <label for="rating5"></label>
+      </div>
+
       <textarea name="review_context" id="textarea" cols="30" rows="10"></textarea>
       <input type="submit" value="작성하기">
     </form>
   </div>
 {% endif %}
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ url_for('static', filename='javascript/bookinfo.js') }}"></script>
 {% endblock %}

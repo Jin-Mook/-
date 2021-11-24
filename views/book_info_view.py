@@ -18,7 +18,7 @@ def info(id):
   # id의 내림차순으로 가져온다. 즉 최신 리뷰목록을 우선으로 보여준다.
   reviews = Review.query.filter(Review.book_name==book_infos.book_name).order_by(Review.id.desc()).all()
 
-  return render_template('bookinfo.html', book_infos=book_infos, reviews=reviews, user=user, id=id)
+  return render_template('bookinfo2.html', book_infos=book_infos, reviews=reviews, user=user, id=id)
 
 
 # 리뷰 작성 라우트
@@ -29,7 +29,8 @@ def review(id):
   user = User.query.filter(User.user_id==user_id).first()
 
   review_context = request.form['review_context']
-  rating = int(request.form['rating'])
+  rating = request.form.getlist('rating')
+  rating = int(rating.pop())
 
   review = Review(user.user_id, book.book_name, book.author, book.isbn, rating, review_context, user.nickname)
   db.session.add(review)
