@@ -3,20 +3,6 @@
   height: 15px;
 }
 
-
-/* .rating .rate_radio {
-  position: relative;
-  display: inline-block;
-  z-index: 20;
-  opacity: 0.5;
-  width: 40px;
-  height: 40px;
-  background-color: #fff;
-  cursor: pointer;
-  vertical-align: top;
-  display: none;
-} */
-
 .rating .rate_radio {
   display: none;
 }
@@ -26,26 +12,14 @@
   display: inline-block;
   margin-left: -4px;
   z-index: 10;
-  width: 40px;
-  height: 40px;
+  width: 25px;
+  height: 25px;
   background-image: url('../images/star.png');
   background-repeat: no-repeat;
-  background-size: 40px 40px;
+  background-size: 25px 25px;
   cursor: pointer;
   opacity: 0.1;
 }
-
-/* .rating label {
-  display: inline-block;
-  margin-left: -4px;
-  width: 40px;
-  height: 40px;
-  background-image: url('../images/star.png');
-  background-size: 40px 40px;
-  cursor: pointer;
-  background-color: #f0f0f0;
-  opacity: 0.1;
-} */
 
 .rating .rate_radio:checked + label {
   opacity: 1;

@@ -16,5 +16,3 @@ rateRadio.forEach((el, idx) => {
     })
   })
 })
-
-console.log(rateRadio)

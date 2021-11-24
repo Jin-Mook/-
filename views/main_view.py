@@ -54,6 +54,7 @@ def main():
         # 리뷰의 개수가 0이 아닌 경우
         else:
             book_ratings = total_rating / len(reviews)
+            book_ratings = round(book_ratings, 1)
 
         # 남아있는 책도 10권으로일단 통일
         book_remain = Book_remain.query.filter(Book_remain.book_name==book_title).first()
