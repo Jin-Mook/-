@@ -1,8 +1,41 @@
+/* 테이블이 보이지 않게 하는 클래스 */
 .notshow {
   display: none;
 }
 
+/* pagination이 활성화 된 속성 */
 .activate {
   color: red;
+}
+
+/* 책의 평점을 숫자 형태로 나타내는 부분의 속성 */
+.book-rating-point {
+  display: inline-block;
+}
+
+/* 별점을 담을 div태그에 대한 속성 */
+.book-rating-star {
+  display: inline-block;
+  position: relative;
+}
+
+/* 실제 색이 칠해질 div 태그의 속성 */
+.book-rating-star .book-rating-current-container {
+  color: blue;
+  position: absolute;
+  display: flex;
+  overflow: hidden;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  padding: 0;
+}
+
+/* 베이스 별점이 될 div 태그의 속성 */
+.book-rating-star .book-rating-base-container {
+  color: rgb(216, 211, 211);
+  padding: 0;
+  z-index: 0;
+  display: flex;
 }
 

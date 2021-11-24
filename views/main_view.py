@@ -51,15 +51,17 @@ def main():
         # 리뷰의 개수가 0인 경우
         if len(reviews) == 0:
             book_ratings = total_rating
+            book_ratings_percent = 0
         # 리뷰의 개수가 0이 아닌 경우
         else:
             book_ratings = total_rating / len(reviews)
             book_ratings = round(book_ratings, 1)
+            book_ratings_percent = book_ratings / 5 * 100
 
         # 남아있는 책도 10권으로일단 통일
         book_remain = Book_remain.query.filter(Book_remain.book_name==book_title).first()
         book_img = '.' + book_img
-        book_info.append([book_img, book_title, book_ratings, book_remain.book_remain, book_id])
+        book_info.append([book_img, book_title, book_ratings, book_remain.book_remain, book_id, book_ratings_percent])
     
 
     # 로그인 된 상태라면 로그인된 유저의 정보 불러오기
