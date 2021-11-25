@@ -1,3 +1,4 @@
+/* 별점 리뷰시 별모양 색이 칠해지는 것과 관련된 코드 */
 .review-rating img {
   width: 15px;
   height: 15px;
@@ -25,3 +26,145 @@
   opacity: 1;
 }
 
+
+/* 책 정보 테이블 관련 스타일 */
+#book-info {
+  text-align: center;
+}
+
+.table {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.book-img {
+  width: 50%;
+}
+
+.book-img-block {
+  margin-left: 10%;
+}
+
+.book-info {
+  width: 50%;
+  /* 부트스트랩 코드와 겹치기 때문에 우선 적용을 위해 !important를 작성하였다. */
+  padding: 0 !important;
+}
+
+.book-info table {
+  margin-left: 20%;
+  margin-top: 10px;
+}
+
+.first-line {
+  /* 부트스트랩 코드와 겹치기 때문에 우선 적용을 위해 !important를 작성하였다. */
+  border-top: none !important;
+}
+
+
+/* 책 소개 관련 스타일 */
+.book-description-block {
+  width: 70%;
+  margin: 30px auto 30px auto;
+  padding: 50px;
+  padding-top: 20px;
+  border: 2px solid rgb(201, 201, 128);
+}
+
+.book-description-head {
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.book-description-content {
+  font-size: 18px;
+  line-height: 40px;
+}
+
+
+/* 댓글 관련 스타일 */
+#comment-block {
+  width: 70%;
+  margin: 30px auto 30px auto;
+  border: 2px solid rgb(201, 201, 128);
+  padding: 50px;
+  padding-top: 20px;
+}
+
+.comment-title {
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.comment-block {
+  width: 80%;
+  margin: 10px auto 10px auto;
+  border: 2px solid rgb(229, 242, 253);
+  padding: 20px;
+  background-color: aliceblue;
+}
+
+.comment-block .comment-nickname {
+  font-weight: bold;
+  text-align: left;
+  margin-left: 40px;
+  margin-bottom: 10px;
+}
+
+.comment-text-rating {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.comment-block .comment-text-rating {
+  width: 100%;
+}
+
+.comment-text-rating .review-text {
+  width: 80%;
+  font-size: 15px;
+}
+
+.comment-text-rating .review-rating {
+  margin-right: 20px;
+}
+
+
+/* 댓글작성 관련 스타일 */
+#write-review {
+  width: 70%;
+  margin: 30px auto 100px auto;
+  border: 2px solid rgb(201, 201, 128);
+  padding: 20px 50px;
+  
+}
+
+.write-review-title {
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#write-review textarea {
+  width: 80%;
+  padding: 10px;
+}
+
+.rating-submit-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin-top: 10px;
+}
+
+.rating-submit-btn .rating {
+  margin-right: 40px;
+}
+
+.rating-submit-btn .submit {
+  margin-right: 50px;
+} 
