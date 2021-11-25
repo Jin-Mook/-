@@ -1,7 +1,93 @@
+/* 테이블이 보이지 않게 하는 클래스 */
 .notshow {
   display: none;
 }
 
+/* pagination이 활성화 된 속성 */
 .activate {
-  color: red;
+  color: rgb(228, 108, 108);
+  font-weight: bold;
+}
+
+/* main.css에서 가져온 부분 */
+/* 테이블 부분 디자인 구현 */
+/* 테이블 디자인 */
+.table {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 테이블 하나하나의 div태그 */
+.book-container {
+  background-color: #ecece6;
+  position: relative;
+  width: 280px;
+  height: 380px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 책 이미지 크기 조절 */
+.book-container img {
+  width: 180px;
+  height: 220px;
+  margin-top: 20px;
+}
+
+/* 책에 따른 아래 제목 평점 남은 권수에 대한 부분 */
+.book-container-text {
+  position: absolute;
+  width: 80%;
+  top: 245px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 책 제목에 관한 부분 */
+.book-container-text .book-title {
+  height: 50px;
+  font-weight: bold;
+}
+
+/* 책 제목을 가운데 정렬시키는 코드 */
+.book-container-text #book-title {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.book-container-text .book-count {
+  font-size: 17px;
+}
+
+
+/* pagination 부분 css */
+#pagination {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 30px;
+}
+
+#pagination span {
+  padding-left: 15px;
+  padding-right: 15px;
+  line-height: 40px;
+  cursor: pointer;
+}
+
+#pagination .first-btn {
+  font-size: 40px;
+}
+
+#pagination .last-btn {
+  font-size: 40px;
+}
+
+#pagination .page-btn {
+  display: inline-block;
+  position: relative;
+  top: 50%;
+  transform: translateY(-7%);
 }

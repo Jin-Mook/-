@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-<table>
+<table class="table">
 <tbody>
   {% for i in range(checkout_list|length) %}
   
@@ -14,12 +14,19 @@
   {% endif %}
     <td>
       <div class="book-container">
-        <div class="book-img"><img src="{{ checkout_list[i][0] }}" alt="{{ checkout_list[i][1] }}" style="width: 200px;"></div>
-        <div class="book-title">{{ checkout_list[i][1] }}</div>
-        <div class="book-count">{{ checkout_list[i][2] }}</div>
-        <div class="book-rating">{{ checkout_list[i][3] }}</div>
-        <div class="book-borrow">대여일 : {{ checkout_list[i][4] }}</div>
-        <div class="book-return">반납일 : {{ checkout_list[i][5] }}</div>
+        <div class="book-img">
+          <img src="{{ checkout_list[i][0] }}" alt="{{ checkout_list[i][1] }}" style="width: 200px;">
+        </div>
+        <div class="book-container-text">
+          <div class="book-title">
+            <div id="book-title">
+              {{ checkout_list[i][1] }}
+            </div>
+          </div>
+          <div class="book-count">{{ checkout_list[i][2] }} 권</div>
+          <div class="book-borrow">대여일 : {{ checkout_list[i][4] }}</div>
+          <div class="book-return">반납일 : {{ checkout_list[i][5] }}</div>
+        </div>
       </div>
     </td>
   {% if i % 4 == 3 %}
