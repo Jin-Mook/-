@@ -5,7 +5,9 @@
 
 /* pagination이 활성화 된 속성 */
 .activate {
-  color: red;
+  color: rgb(228, 108, 108);
+  font-weight: bold;
+  /* background-color: rgb(245, 241, 241); */
 }
 
 /* 책의 평점을 숫자 형태로 나타내는 부분의 속성 */
@@ -21,7 +23,7 @@
 
 /* 실제 색이 칠해질 div 태그의 속성 */
 .book-rating-star .book-rating-current-container {
-  color: blue;
+  color: rgb(98, 124, 196);
   font-size: 20px;
   position: absolute;
   display: flex;
@@ -41,3 +43,109 @@
   font-size: 20px;
 }
 
+
+/* 테이블 부분 디자인 구현 */
+/* 테이블 디자인 */
+.table {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 테이블 하나하나의 div태그 */
+.book-container {
+  background-color: #ecece6;
+  position: relative;
+  width: 280px;
+  height: 380px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 10px 10px 2px rgb(236, 229, 229);
+}
+
+/* 책 이미지 크기 조절 */
+.book-container img {
+  width: 180px;
+  height: 220px;
+  margin-top: 10px;
+}
+
+/* 책에 따른 아래 제목 평점 남은 권수에 대한 부분 */
+.book-container-text {
+  position: absolute;
+  width: 80%;
+  top: 240px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 책 제목에 관한 부분 */
+.book-container-text .book-title {
+  margin-bottom: -5px;
+  height: 50px;
+}
+
+/* 책 제목을 가운데 정렬시키는 코드 */
+.book-container-text #book-title {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+.book-container-text .book-title a {
+  color: black;
+  font-weight: bold;
+}
+
+/* 평점 부분 스타일 */
+.book-container-text .book-rating-point {
+  font-size: 14px;
+}
+
+/* 남은 권수 스타일 */
+.book-container-text .book-remain {
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 6px;
+}
+
+/* 대여하기 관련 스타일 부분 */
+.book-container-text .book-checkout {
+  border-radius: 13px;
+  padding: 5px 20px;
+  background-color: #4cc9b0;
+  color: white;
+  font-weight: bold;
+}
+
+
+/* pagination 부분 css */
+#pagination {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 30px;
+}
+
+#pagination span {
+  padding-left: 15px;
+  padding-right: 15px;
+  line-height: 40px;
+  cursor: pointer;
+}
+
+#pagination .first-btn {
+  font-size: 40px;
+}
+
+#pagination .last-btn {
+  font-size: 40px;
+}
+
+#pagination .page-btn {
+  display: inline-block;
+  position: relative;
+  top: 50%;
+  transform: translateY(-7%);
+}

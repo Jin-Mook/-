@@ -1,11 +1,11 @@
 {% extends 'navbar.html' %}
 
 {% block script %}
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 {% endblock %}
 
 {% block content %}
-<table>
+<table class="table">
 <tbody>
   {% for i in range(book_info|length) %}
   
@@ -14,30 +14,36 @@
   {% endif %}
     <td>
       <div class="book-container">
-        <div class="book-img"><img src="{{ book_info[i][0] }}" alt="{{ book_info[i][1] }}" style="width: 200px;"></div>
-        <div class="book-title"><a href="{{ url_for('book.info', id=book_info[i][4]) }}">{{ book_info[i][1] }}</a></div>
-        <div class="book-rating-container">
-          <div class="book-rating-point">평점 {{ book_info[i][2] }}/5</d>
-          <div class="book-rating-star">
-            <div class="book-rating-current-container" style="width: {{ book_info[i][5] }}%;">
-              <span class="book-rating-current">★</span>
-              <span class="book-rating-current">★</span>
-              <span class="book-rating-current">★</span>
-              <span class="book-rating-current">★</span>
-              <span class="book-rating-current">★</span>
-            </div>
-            <div class="book-rating-base-container">
-              <span class="book-rating-base">★</span>
-              <span class="book-rating-base">★</span>
-              <span class="book-rating-base">★</span>
-              <span class="book-rating-base">★</span>
-              <span class="book-rating-base">★</span>
+        <div class="book-img"><img src="{{ book_info[i][0] }}" alt="{{ book_info[i][1] }}"></div>
+        <div class="book-container-text">
+          <div class="book-title">
+            <div id="book-title">
+              <a href="{{ url_for('book.info', id=book_info[i][4]) }}">{{ book_info[i][1] }}</a>
             </div>
           </div>
+          <div class="book-rating-container">
+            <div class="book-rating-point">평점 {{ book_info[i][2] }}/5</d>
+            <div class="book-rating-star">
+              <div class="book-rating-current-container" style="width: {{ book_info[i][5] }}%;">
+                <span class="book-rating-current">★</span>
+                <span class="book-rating-current">★</span>
+                <span class="book-rating-current">★</span>
+                <span class="book-rating-current">★</span>
+                <span class="book-rating-current">★</span>
+              </div>
+              <div class="book-rating-base-container">
+                <span class="book-rating-base">★</span>
+                <span class="book-rating-base">★</span>
+                <span class="book-rating-base">★</span>
+                <span class="book-rating-base">★</span>
+                <span class="book-rating-base">★</span>
+              </div>
+            </div>
+          </div>
+          <div class="book-remain">{{ book_info[i][3] }}권 남음</div>
+          {% if session.get('login') != None %}
+          <a class="book-checkout" href="{{ url_for('checkout_return.checkout', id=book_info[i][4]) }}">대여하기</a>
         </div>
-        <div class="book-remain">{{ book_info[i][3] }}권 남음</div>
-        {% if session.get('login') != None %}
-        <a href="{{ url_for('checkout_return.checkout', id=book_info[i][4]) }}">대여하기</a>
         {% endif %}
       </div>
     </td>
