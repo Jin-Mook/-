@@ -22,6 +22,7 @@
 /* 실제 색이 칠해질 div 태그의 속성 */
 .book-rating-star .book-rating-current-container {
   color: blue;
+  font-size: 20px;
   position: absolute;
   display: flex;
   overflow: hidden;
@@ -37,5 +38,6 @@
   padding: 0;
   z-index: 0;
   display: flex;
+  font-size: 20px;
 }
 
