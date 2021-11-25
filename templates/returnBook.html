@@ -1,19 +1,42 @@
 {% extends 'navbar.html' %}
 
+{% block script %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/returnBook.css') }}">
+{% endblock %}
+
 {% block content %}
-  <h2><{{nickname}}님의 반납 가능 목록></h2>
+  <div class="page-title">
+    <p><{{nickname}}님의 반납 가능 목록></p>
+  </div>
 {% for return_book in returned_list %}
   <div class="book-container">
-    <div class="book-img"><img src="{{ return_book[0] }}" alt="{{ return_book[1] }}" style="width: 200px;"></div>
-    <div class="book-title">{{ return_book[1] }}</div>
-    <div class="book-count">{{ return_book[2] }}권</div>
-    <div class="book-rating">평점 : {{ return_book[3] }}</div>
-    <div class="book-borrow">대여일 : {{ return_book[4] }}</div>
-    <div class="book-return">반납일 : {{ return_book[5] }}</div>
+    <div class="img-block flex-box">
+      <div class="book-img">
+        <img src="{{ return_book[0] }}" alt="{{ return_book[1] }}" style="height: 148px; width: 130px;">
+      </div>
+    </div>
 
-    <form action="{{ url_for('checkout_return.returnBook', id=return_book[6]) }}" method="post">
-      <input type="submit" value="반납하기">
-    </form>
+    <div class="title-count-block flex-box">
+      <div class="height-control">
+        <div class="book-title">{{ return_book[1] }}</div>
+        <div class="book-count">{{ return_book[2] }} 권</div>
+      </div>
+    </div>
+
+    <div class="borrow-return-block flex-box" >
+      <div class="height-control">
+        <div class="book-borrow">대여일 : {{ return_book[4] }}</div>
+        <div class="book-return">반납기한 : {{ return_book[5] }}</div>
+      </div>
+    </div>
+
+    <div class="returnBtn-block flex-box">
+      <div class="height-control">
+        <form action="{{ url_for('checkout_return.returnBook', id=return_book[6]) }}" method="post">
+          <input class="btn btn-outline-secondary btn-lg" type="submit" value="반납하기">
+        </form>
+      </div>
+    </div>
   </div>
 {% endfor %}
 {% endblock %}

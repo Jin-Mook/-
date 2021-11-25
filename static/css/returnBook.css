@@ -1,0 +1,68 @@
+/* 페이지의 상단 글에 대한 스타일 */
+.page-title {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 25px;
+  padding-top: 20px;
+  width: 90%;
+  border-top: 2px solid #dee2e6;
+}
+
+/* 반납 목록을 담을 div태그 */
+.book-container {
+  width: 830px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 3px solid #C2A788;
+  background-color: #f3eee8;
+}
+
+/* 한칸 한칸에 해당하는 div태그 스타일 */
+.flex-box {
+  position: relative;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 150px;
+}
+
+/* 글자를 가운데에 정렬시키기 위한 클래스 스타일 */
+.height-control {
+  width: 250px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 이미지가 있는 부분 */
+.img-block {
+  width: 180px;
+  border-right: 3px solid #C2A788;
+}
+
+/* 책 제목과 권수가 있는 부분 */
+.title-count-block {
+  width: 300px;
+  border-right: 3px solid #C2A788;
+}
+
+.title-count-block .book-title {
+  margin-bottom: 5px;
+}
+
+/* 대여일과 반납기한이 있는 부분 */
+.borrow-return-block {
+  width: 200px;
+  border-right: 3px solid #C2A788;
+}
+
+/* 반납 버튼과 관련된 부분 */
+.returnBtn-block {
+  width: 150px;
+}
