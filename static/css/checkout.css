@@ -13,21 +13,8 @@ a {
   text-decoration: none;
 }
 
-
-/* 에러 메시지 부분 */
-#error-message {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  text-align: center;
-  color: rgb(111, 111, 233);
-  font-size: 16px;
-  font-weight: 700;
-}
-
 /* 입력창 부분 */
-#regist-box {
+#checkout-box {
   width: 650px;
   background-color: white;
   position: fixed;
@@ -37,20 +24,46 @@ a {
   border: 2px solid rgb(209, 204, 204);
   box-shadow: 15px 15px 20px gray;
   padding: 25px 75px;
+  text-align: center;
 }
 
-#input-box {
-  margin-top: 35px;
+#input-box label {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
-#input-box input {
-  display: block;
-  width: 100%;
+#input-box .checkout-number {
+  line-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px; 
+}
+
+#input-box .flex-second {
+  width: 50px;
+}
+
+#input-box .checkout-number .flex-btn {
+  line-height: 29px;
+  font-size: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 50px;
   height: 40px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 10px;
+  cursor: pointer;
+  background-color: rgb(106, 228, 228);
+  border-radius: 10px;
 }
+
+#input-box #checkoutNum {
+  text-align: center;
+  padding: 2px;
+  width: 50px;
+  font-size: 25px;
+}
+
 
 /* 로그인 버튼 아래 부분 */
 #page-change-box {
