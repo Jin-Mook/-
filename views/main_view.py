@@ -96,7 +96,7 @@ def regist():
         # user_id 가 동일한 경우
         user = User.query.filter(User.user_id==user_id).first()
         if user != None:
-            flash('이미 존재하는 아이디 입니다.')
+            flash('이미 존재하는 이메일 입니다.')
             return render_template('regist.html')
         
         user2 = User.query.filter(User.nickname==nickname).first()

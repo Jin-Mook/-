@@ -3,26 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/regist.css') }}">
   <title>회원가입 페이지</title>
 </head>
 <body>
-  <div>
-    {% with message = get_flashed_messages() %}
-      {% if message %}
-      {{ message[0] }}
-      {% endif %}
-    {% endwith %}
-  </div>
-  <form action="{{ url_for('main.regist') }}" method="post">
-    <input type="text" name="nickname" placeholder="이름" />
-    <input type="text" name="user_id" placeholder="이메일 형식으로 작성해주세요" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z0-9-.]{1,63}$" />
-    <input type="password" name="user_pw1" placeholder="비밀번호" />
-    <input type="password" name="user_pw2" placeholder="비밀번호 확인" />
-    <input type="submit" value="회원가입" />
-  </form>
-  <div>
-    <a href="{{ url_for('main.login') }}">로그인</a>
-    <a href="{{ url_for('main.main') }}">홈으로</a>
+  <div id="regist-box">
+    <div id="error-message">
+      {% with message = get_flashed_messages() %}
+        {% if message %}
+        {{ message[0] }}
+        {% endif %}
+      {% endwith %}
+    </div>
+
+    <div id="input-box">
+      <form action="{{ url_for('main.regist') }}" method="post">
+        <label for="nickname" class="exampleFormControlInput1">이름</label>
+        <input class="form-control" type="text" id="nickname" name="nickname" placeholder="사용할 닉네임을 작성해주세요" />
+        <label for="user_id" class="exampleFormControlInput3">Email address</label>
+        <input class="form-control" type="text" id="user_id" name="user_id" placeholder="이메일 형식으로 작성해주세요" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z0-9-.]{1,63}$" />
+        <label for="user_pw1" class="exampleFormControlInput1">비밀번호</label>
+        <input class="form-control" type="password" id="user_pw1" name="user_pw1" placeholder="비밀번호는 문자 숫자 특수문자를 포함한 8자 이상입니다." />
+        <label for="user_pw2" class="exampleFormControlInput1">비밀번호 확인</label>
+        <input class="form-control" type="password" id="user_pw2" name="user_pw2" placeholder="비밀번호 확인" />
+        <input class="btn btn-outline-primary" type="submit" value="회원가입" />
+      </form>
+    </div>
+
+    <div id="page-change-box">
+      <div class="content-box">
+        <a href="{{ url_for('main.login') }}">로그인</a>
+      </div>
+      <div class="content-box">
+        <a href="{{ url_for('main.main') }}">홈으로</a>
+      </div>
+    </div>
   </div>
 </body>
 </html>

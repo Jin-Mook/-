@@ -1,4 +1,4 @@
-/* 전체 로그인 UI에 관한 스타일 */
+/* 전체 회원가입 UI에 관한 스타일 */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -13,6 +13,9 @@ a {
   text-decoration: none;
 }
 
+#regist-box {
+  position: relative;
+}
 
 /* 에러 메시지 부분 */
 #error-message {
@@ -27,8 +30,8 @@ a {
 }
 
 /* 입력창 부분 */
-#login-box {
-  width: 400px;
+#regist-box {
+  width: 650px;
   background-color: white;
   position: fixed;
   top: 50%;
@@ -36,7 +39,7 @@ a {
   transform: translate(-50%, -60%);
   border: 2px solid rgb(209, 204, 204);
   box-shadow: 15px 15px 20px gray;
-  padding: 25px 50px 25px 50px;
+  padding: 25px 75px;
 }
 
 #input-box {
@@ -56,7 +59,7 @@ a {
 /* 로그인 버튼 아래 부분 */
 #page-change-box {
   display: flex;
-  margin-top: 10px;
+  margin-top: 20px;
   justify-content: space-around;
   align-items: center;
 }
