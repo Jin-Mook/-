@@ -1,0 +1,69 @@
+/* 전체 로그인 UI에 관한 스타일 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #FDFCFB;
+}
+
+a {
+  text-decoration: none;
+}
+
+#login-box {
+  position: relative;
+}
+
+/* 에러 메시지 부분 */
+#error-message {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
+  color: rgb(111, 111, 233);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* 입력창 부분 */
+#login-box {
+  width: 400px;
+  background-color: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  border: 2px solid rgb(209, 204, 204);
+  box-shadow: 15px 15px 20px gray;
+  padding: 25px 50px 25px 50px;
+}
+
+#input-box {
+  /* text-align: center; */
+  margin-top: 35px;
+}
+
+#input-box input {
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+}
+
+/* 로그인 버튼 아래 부분 */
+#page-change-box {
+  display: flex;
+  margin-top: 10px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#page-change-box a {
+  color: gray;
+}

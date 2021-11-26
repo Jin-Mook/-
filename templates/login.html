@@ -3,25 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
   <title>로그인 페이지</title>
 </head>
 <body>
-  <div>
-    {% with message = get_flashed_messages() %}
-      {% if message %}
-      {{ message[0] }}
-      {% endif %}
-    {% endwith %}
-  </div>
-  
-  <form action="{{ url_for('main.login') }}" method="post">
-    <input type="text" name="user_id" placeholder="이메일을 입력하세요" />
-    <input type="password" name="user_pw" placeholder="비밀번호를 입력하세요" />
-    <input type="submit" value="로그인" />
-  </form>
-  <div>
-    <a href="{{ url_for('main.regist') }}">회원가입</a>
-    <a href="{{ url_for('main.main') }}">홈으로</a>
+  <div id="login-box">
+    <div id="error-message">
+      {% with message = get_flashed_messages() %}
+        {% if message %}
+        {{ message[0] }}
+        {% endif %}
+      {% endwith %}
+    </div>
+    
+    <div id="input-box">
+      <form action="{{ url_for('main.login') }}" method="post">
+        <label for="user_id" class="exampleFormControlInput1">Email address</label>
+        <input class="email form-control" type="text" name="user_id" id="user_id" placeholder="이메일을 입력하세요" />
+        <label for="user_pw" class="exampleFormControlInput1">password</label>
+        <input class="password form-control" type="password" name="user_pw" id="user_pw" placeholder="비밀번호를 입력하세요" />
+        <input class="btn btn-outline-primary" type="submit" value="로그인" />
+      </form>
+    </div>
+
+    <div id="page-change-box">
+      <div class="regist content-box navbar-toggler">
+        <a href="{{ url_for('main.regist') }}">회원가입</a>
+      </div>
+      <div class="home content-box navbar-toggler">
+        <a href="{{ url_for('main.main') }}">홈으로</a>
+      </div>
+    </div>
   </div>
 </body>
 </html>
